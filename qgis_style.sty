@@ -209,3 +209,67 @@ your own risk!}
 
 \renewcommand{\@pnumwidth}{1.75em}
 \renewcommand{\@tocrmarg}{2em} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Here are some styles for use only when discussing Python coding
+% classname
+% usage: \classname{NewLayer}
+\newcommand{\classname}[1]{\textsf{\textbf{#1}}}
+%
+% object
+% usage
+\newcommand{\object}[1]{\textsf{\textit{#1}}}
+%
+% method
+% usage: \method{classFactory}
+\newcommand{\method}[1]{\textsf{\textit{#1}}}
+\newcommand{\usertext}[1]{\texttt{#1}}
+%
+% filename
+% usage: \filename{lakes.shp}
+\newcommand{\filename}[1]{\texttt{#1}}
+%
+% server
+% usage: \server{myhost.de}
+\newcommand{\server}[1]{\textit{#1}}
+% keystroke
+% style for user input by individual keystrokes
+% usage: \keystroke{p}, \keystroke{Ctrl+B}
+\newcommand{\keystroke}[1]{\cornersize{.6}\ovalbox{\textsf{#1}}}
+%
+% add operation system figure in text
+\newcommand{\nix}[1]{\includegraphics[height=5mm]{nix.eps} #1}
+\newcommand{\win}[1]{\includegraphics[height=5mm]{win.eps} #1}
+\newcommand{\osx}[1]{\includegraphics[height=5mm]{osx.eps} #1}
+%
+% add operation system icons to figure \caption
+% usage: \caption{Text \wincaption}
+\newcommand{\nixcaption}{\protect\includegraphics[height=4mm]{nix.eps}}
+\newcommand{\wincaption}{\protect\includegraphics[height=4mm]{win.eps}}
+\newcommand{\osxcaption}{\protect\includegraphics[height=4mm]{osx.eps}}
+% OTHER STYLES
+% some styles for the Qt GUI- these are placeholders at present
+\newcommand{\qtmainmenuopt}[1]{\textsf{#1}}
+\newcommand{\qtdropmenuopt}[1]{\textsf{#1}}
+\newcommand{\qtdialog}[1]{\textsf{#1}}
+% button: for any button that only has text, no icon
+% usage: \button{Save as Default}
+\newcommand{\button}[1]{%
+\raisebox{-6pt}{%
+\shadowbox{\guilabel{#1}}
+}}
+% dropmenuopttwo: for dropdown menu items with icons
+% usage: \mainmenuopt{Layer} > 
+% \dropmenuopttwo{mActionAddRasterLayer}{Add a Raster Layer}
+\newcommand{\dropmenuopttwo}[2]{%
+\raisebox{-6pt}{%
+{%
+\setlength{\fboxsep}{0pt}%
+\shadowbox{\setlength{\fboxsep}{2pt}%
+\fcolorbox[rgb]{.95,.95,0.8}[rgb]{.95,.95,0.8}%
+{\includegraphics[width=3mm]{#1} \guilabel{#2}}}%
+}}}
+% guilabel
+% generic style for text that appears in the GUI
+% usage
+\newcommand{\guilabel}[1]{\textsf{#1}}

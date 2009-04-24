@@ -8,7 +8,7 @@
 
 The following chapters provide coding information for QGIS Version \CURRENT. 
 This document corresponds almost to a \LaTeX~ conversion of
-the CODING.t2t file coming with the QGIS sources from December, 16th 2008.
+the CODING.t2t file coming with the QGIS sources from April, 24th 2009.
 
 These standards should be followed by all QGIS developers. Current information 
 about QGIS Coding Standards are also available from wiki at:
@@ -197,13 +197,15 @@ class Foo
 Here are described some programming hints and tips that will hopefully reduce errors, development time, and maintenance.
 
 \subsubsection{Where-ever Possible Generalize Code}
+\begin{verbatim}
+If you are cut-n-pasting code, or otherwise writing the same thing more than once, 
+consider consolidating the code into a single function.
+\end{verbatim}
 
-If you are cut-n-pasting code, or otherwise writing the same thing more than once, consider consolidating the code 
-into a single function.
-
-This will allow changes to be made in one location instead of in multiple places
+This will:
 
 \begin{itemize}
+\item allow changes to be made in one location instead of in multiple places
 \item help prevent code bloat
 \item make it more difficult for multiple copies to evolve differences over time, thus making it harder to understand and maintain for others
 \end{itemize}
@@ -282,13 +284,16 @@ So, prefer this:
 
 \subsubsection{Book recommendations}
 
-Effective C++ \url{http://www.awprofessional.com/title/0321334876} \\
-More Effective C++ \url{http://www.awprofessional.com/bookstore/product.asp?isbn=020163371X&rl=1} \\
-Effective STL \url{http://www.awprofessional.com/title/0201749629} \\
-Design Patterns \url{http://www.awprofessional.com/title/0201634988}
+\begin{itemize} 
+\item \htmladdnormallink{Effective C++}{http://www.awprofessional.com/title/0321334876}, Scott Meyers
+\item \htmladdnormallink{More Effective C++}{http://www.awprofessional.com/bookstore/product.asp?isbn=020163371X&rl=1}, Scott Meyers
+\item \htmladdnormallink{Effective STL}{http://www.awprofessional.com/title/0201749629}, Scott Meyers
+\item \htmladdnormallink{Design Patterns}{http://www.awprofessional.com/title/0201634988}, GoF
+\end{itemize}
 
-You should also really read this article from Qt Quarterly on designing Qt style
-\url{http://doc.trolltech.com/qq/qq13-apis.html}
+You should also really read this article from Qt Quarterly on 
+\htmladdnormallink{http://doc.trolltech.com/qq/qq13-apis.html designing Qt style}{APIs}
+
 
 \section{SVN Access}
 This page describes how to get started using the QGIS Subversion repository
@@ -297,7 +302,7 @@ This page describes how to get started using the QGIS Subversion repository
 To check out QGIS HEAD:
 
 \begin{verbatim}
-  svn --username [your user name] co https://svn.qgis.org/repos/qgis/trunk/qgis
+  svn --username [your user name] co https://svn.osgeo.org/qgis/trunk/qgis
 \end{verbatim}
 
 \subsection{Anonymous Access}
@@ -311,18 +316,18 @@ for more information. The Links page contains a good selection of SVN clients fo
 To check out a branch
 
 \begin{verbatim}
-  svn co https://svn.qgis.org/repos/qgis/branches/<branch name>
+  svn co https://svn.osgeo.org/qgis/branches/<branch name>
 \end{verbatim}
 To check out SVN stable trunk:
 
 \begin{verbatim}
-  svn co https://svn.qgis.org/repos/qgis/trunk/qgis qgis_unstable
+  svn co https://svn.osgeo.org/qgis/trunk/qgis qgis_trunk
 \end{verbatim}
 
-/!$\backslash$ \textbf{Note:} If you are behind a proxy server, edit your \~{}/subversion/servers file to specify 
+\textbf{Note:} If you are behind a proxy server, edit your \~{}/subversion/servers file to specify 
 your proxy settings first!
 
-/!$\backslash$ \textbf{Note:} In QGIS we keep our most stable code in trunk. Periodically we will tag a release 
+\textbf{Note:} In QGIS we keep our most stable code in trunk. Periodically we will tag a release 
 off trunk, and then continue stabilisation and selective incorporation of new features into trunk.
 
 See the INSTALL file in the source tree for specific instructions on building development versions. 
@@ -331,7 +336,7 @@ See the INSTALL file in the source tree for specific instructions on building de
 If you're interested in checking out Quantum GIS documentation sources:
 
 \begin{verbatim}
-  svn co https://svn.qgis.org/repos/qgis_docs/trunk qgis_docs
+  svn co https://svn.osgeo.org/qgis/docs/trunk qgis_docs
 \end{verbatim}
 
 You can also take a look at DocumentationWritersCorner for more information.
@@ -353,19 +358,23 @@ coded in svn branches first and merged to trunk (the main branch) when they are 
 describes the procedure for branching and merging in the QGIS project.
 
 \subsubsection{Procedure}
- * Initial announcement on mailing list
+
+\begin{itemize} 
+\item Initial announcement on mailing list
 Before starting, make an announcement on the developer mailing list to see if another developer is 
 already working on the same feature. Also contact the technical advisor of the project steering committee 
 (PSC). If the new feature requires any changes to the QGIS architecture, a request for comment (RFC) is needed. 
- * Create a branch
+\item Create a branch
 Create a new svn branch for the development of the new feature (see UsingSubversion for the svn syntax). Now 
 you can start developing.
- * Merge from trunk regularly
+\item Merge from trunk regularly
 It is recommended to merge the changes in trunk to the branch on a regular basis. This makes it easier to merge 
 the branch back to trunk later.
- * Documentation on wiki
+\item Documentation on wiki
 It is also recommended to document the intended changes and the current status of the work on a wiki page.
- * Testing before merging back to trunk
+\item Testing before merging back to trunk
+\end{itemize}
+
 When you are finished with the new feature and happy with the stability, make an announcement on the developer list. 
 Before merging back, the changes will be tested by developers and users. Binary packages (especially for OsX and Windows) 
 will be generated to also involve non-developers. In trac, a new Component will be opened to file tickets against. 
@@ -376,8 +385,8 @@ We prefer that new feature developments happen out of trunk so that trunk remain
 stable state. To create a branch use the following command:
 
 \begin{verbatim}
-svn copy https://svn.qgis.org/repos/qgis/trunk/qgis \
-https://svn.qgis.org/repos/qgis/branches/qgis_newfeature
+svn copy https://svn.osgeo.org/qgis/trunk/qgis \
+https://svn.osgeo.org/qgis/branches/qgis_newfeature
 svn commit -m "New feature branch"
 \end{verbatim}
 
@@ -389,14 +398,14 @@ numbers of your branch which will produce output something like this:
 \begin{verbatim}
 timlinux@timlinux-desktop:~/dev/cpp/qgis_raster_transparency_branch$ svn info
 Caminho: .
-URL: https://svn.qgis.org/repos/qgis/branches/raster_transparency_branch
-Raiz do Repositorio: https://svn.qgis.org/repos/qgis
-UUID do repositorio: c8812cc2-4d05-0410-92ff-de0c093fc19c
-Revisao: 6546
+URL: https://svn.osgeo.org/qgis/branches/raster_transparency_branch
+Raiz do Repository: https://svn.osgeo.org/qgis
+UUID do repository: c8812cc2-4d05-0410-92ff-de0c093fc19c
+Revision: 6546
 Tipo de No: diretorio
 Agendado: normal
 Autor da Ultima Mudanca: timlinux
-Revisao da Ultima Mudanca: 6495
+Revision da Ultima Mudanca: 6495
 Data da Ultima Mudanca: 2007-02-02 09:29:47 -0200 (Sex, 02 Fev 2007)
 Propriedades da Ultima Mudanca: 2007-01-09 11:32:55 -0200 (Ter, 09 Jan 2007)
 \end{verbatim}
@@ -405,13 +414,13 @@ The second revision number shows the revision number of the start revision of yo
 current revision. You can do a dry run of the merge like this:
 
 \begin{verbatim}
-svn merge --dry-run -r 6495:6546 https://svn.qgis.org/repos/qgis/trunk/qgis
+svn merge --dry-run -r 6495:6546 https://svn.osgeo.org/qgis/trunk/qgis
 \end{verbatim}
 
 After you are happy with the changes that will be made do the merge for real like this:
 
 \begin{verbatim}
-svn merge -r 6495:6546 https://svn.qgis.org/repos/qgis/trunk/qgis
+svn merge -r 6495:6546 https://svn.osgeo.org/qgis/trunk/qgis
 svn commit -m "Merged upstream changes from trunk to my branch"
 \end{verbatim}
 
@@ -471,7 +480,7 @@ several substantial patches that demonstrate their understanding of modifying th
 Checkout the sources:
 
 \begin{verbatim}
-svn co https://svn.qgis.org/repos/qgis/trunk/qgis qgis
+svn co https://svn.osgeo.org/qgis/trunk/qgis qgis
 \end{verbatim}
 
 Build the sources (see INSTALL document for proper detailed instructions)
@@ -533,42 +542,40 @@ Unit testing is carried out using a combination of QTestLib (the Qt testing libr
 CTest (a framework for compiling and running tests as part of the CMake build process). 
 Lets take an overview of the process before I delve into the details:
 
-\begin{itemize}
-\item \textbf{There is some code you want to test}, e.g. a class or function. Extreme programming 
+ * \textbf{There is some code you want to test}, e.g. a class or function. Extreme programming 
    advocates suggest that the code should not even be written yet when you start 
    building your tests, and then as you implement your code you can immediately validate 
    each new functional part you add with your test. In practive you will probably 
    need to write tests for pre-existing code in QGIS since we are starting with a testing 
    framework well after much application logic has already been implemented.
 
-\item \textbf{You create a unit test.} This happens under $<$QGIS Source Dir$>$/tests/src/core 
+ * \textbf{You create a unit test.} This happens under $<$QGIS Source Dir$>$/tests/src/core 
    in the case of the core lib. The test is basically a client that creates an instance 
    of a class and calls some methods on that class. It will check the return from each 
    method to make sure it matches the expected value. If any one of the calls fails,
    the unit will fail.
 
-\item \textbf{You include QtTestLib macros in your test class.} This macro is processed by 
+ * \textbf{You include QtTestLib macros in your test class.} This macro is processed by 
    the Qt meta object compiler (moc) and expands your test class into a runnable application. 
 
-\item \textbf{You add a section to the CMakeLists.txt} in your tests directory that will
+ * \textbf{You add a section to the CMakeLists.txt} in your tests directory that will
    build your test.
 
-\item \textbf{You ensure you have ENABLE\_TESTING enabled in ccmake / cmakesetup.} This 
+ * \textbf{You ensure you have ENABLE\_TESTING enabled in ccmake / cmakesetup.} This 
    will ensure your tests actually get compiled when you type make.
 
-\item \textbf{You optionally add test data to $<$QGIS Source Dir$>$/tests/testdata} if your 
+ * \textbf{You optionally add test data to $<$QGIS Source Dir$>$/tests/testdata} if your 
    test is data driven (e.g. needs to load a shapefile). These test data should be 
    as small as possible and wherever possible you should use the existing datasets 
    already there. Your tests should never modify this data in situ, but rather 
    may a temporary copy somewhere if needed.
 
-\item \textbf{You compile your sources and install.} Do this using normal make \&\& (sudo) 
+ * \textbf{You compile your sources and install.} Do this using normal make \&\& (sudo) 
    make install procedure.
 
-\item \textbf{You run your tests.} This is normally done simply by doing \textbf{make test} 
+ * \textbf{You run your tests.} This is normally done simply by doing \textbf{make test} 
  after the make install step, though I will explain other aproaches that offer more 
  fine grained control over running tests.
-\end{itemize}
 
 Right with that overview in mind, I will delve into a bit of detail. I've already 
 done much of the configuration for you in CMake and other places in the source tree 
@@ -583,8 +590,6 @@ test with the same name as the class they are testing but prefixed with 'Test'.
 So our test implementation goes in a file called testqgsrasterlayer.cpp and 
 the class itself will be TestQgsRasterLayer. First we add our standard copyright 
 banner:
-
-\newpage
 
 \begin{verbatim}
 /***************************************************************************
@@ -774,14 +779,14 @@ void TestQgsRasterLayer::initTestCase()
 #endif
   //create some objects that will be used in all tests...
 
-  std::cout << "Prefix  PATH: " << QgsApplication::prefixPath().toLocal8Bit().data() \
-  << std::endl;
-  std::cout << "Plugin  PATH: " << QgsApplication::pluginPath().toLocal8Bit().data() \
-  << std::endl;
-  std::cout << "PkgData PATH: " << QgsApplication::pkgDataPath().toLocal8Bit().data() \
-  << std::endl;
-  std::cout << "User DB PATH: " << QgsApplication::qgisUserDbFilePath().toLocal8Bit() \
-  .data() << std::endl;
+  std::cout << "Prefix  PATH: " \
+  << QgsApplication::prefixPath().toLocal8Bit().data() << std::endl;
+  std::cout << "Plugin  PATH: " \
+  << QgsApplication::pluginPath().toLocal8Bit().data() << std::endl;
+  std::cout << "PkgData PATH: " \
+  << QgsApplication::pkgDataPath().toLocal8Bit().data() << std::endl;
+  std::cout << "User DB PATH: " \
+  << QgsApplication::qgisUserDbFilePath().toLocal8Bit().data() << std::endl;
 
   //create a raster layer that will be used in all tests...
   QString myFileName (TEST_DATA_DIR); //defined in CmakeLists.txt
@@ -1040,8 +1045,8 @@ PASS   : TestQgsApplication::getPaths()
   User DB PATH: /Users/tim/.qgis/qgis.db
   QDEBUG : TestQgsApplication::checkTheme() Checking if a theme icon exists:
   QDEBUG : TestQgsApplication::checkTheme() 
-  /Users/tim/dev/cpp/qgis/build/tests/src/core/.. \
-  //share/qgis/themes/default//mIconProjectionDisabled.png
+  /Users/tim/dev/cpp/qgis/build/tests/src/core/../\
+  /share/qgis/themes/default//mIconProjectionDisabled.png
   FAIL!  : TestQgsApplication::checkTheme() '!myPixmap.isNull()' returned FALSE. ()
   Loc: [/Users/tim/dev/cpp/qgis/tests/src/core/testqgsapplication.cpp(59)]
 PASS   : TestQgsApplication::cleanupTestCase()
@@ -1091,5 +1096,4 @@ guidelines are followed in layout and design of GUIs.
    buttons is consistent with the operating system / locale / desktop 
    environment that the user is using.
  \end{enumerate}
-
 

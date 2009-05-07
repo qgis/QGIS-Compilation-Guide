@@ -13,7 +13,8 @@
 PNG=cpp1_application.eps\
     cpp2_application.eps\
     mActionShowPluginManager.eps\
-
+    python1_application.eps\
+    python2_application.eps\
 
 JPG=qgis_icon_new_verylarge.eps\
 	 

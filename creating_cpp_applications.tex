@@ -3,22 +3,19 @@
 Not everyone wants a full blown GIS desktop application. Sometimes you want
 to just have a widget inside your application that displays a map while the
 main goal of the application lies elsewhere. Perhaps a database frontend with
-a map display? This Section provides two simple code examples by Tim Sutton. 
-They are available in the qgis subversion repository together with more
-interesting tutorials. Check out the whole repository from: 
-\filename{https://svn.osgeo.org/qgis/trunk/code\_examples/}
+a map display? This Section provides two simple code examples by Tim Sutton, 
+based on earlier work by Francis Bolduc. They are available in the qgis 
+subversion repository together with more interesting tutorials. Check out 
+the whole repository from: \filename{https://svn.osgeo.org/qgis/trunk/code\_examples/}
 
 \subsection{Creating a simple mapping widget}\label{subsec:simple_widget}
 
-With this first tutorial we take a little walk through creating a simple mapping
-widget. It won't do anything much - just load a shape file and display it in
-a random colour. 
-But it should give you an idea of the potential for using QGIS as an embedded
-mapping component. Before we carry on, many thanks to Francis Bolduc who wrote
-the beginnings of this demo. He kindly agreed to make his work generally
-available.
+With this tutorial we will create a simple mapping widget. It won't do 
+anything much - just load a shape file and display it in a random colour. 
+This should give you an idea of the potential for using QGIS as an embedded
+mapping component.
 
-We start with typical adding the neccessary includes for our app:
+We start by adding the neccessary includes for our app:
 
 \begin{verbatim}
 //
@@ -38,9 +35,8 @@ We start with typical adding the neccessary includes for our app:
 #include <QWidget>
 \end{verbatim}
 
-We use QgsApplication instead of Qt's QApplication, and get some added
-benifits of various static methods that can be used to locate library paths
-and so on.
+We use QgsApplication instead of Qt's QApplication, to take advantage of 
+various static methods that can be used to locate library paths and so on.
 
 The provider registry is a singleton that keeps track of vector data provider
 plugins. It does all the work for you of loading the plugins and so on. The
@@ -53,8 +49,8 @@ The map layer registry keeps track of all the layers you are using. The
 vector layer class inherits from maplayer and extends it to include
 specialist functionality for vector data.
 
-Finally the mapcanvas is really the nub of the matter. Its the drawable
-widget that our map will be drawn onto.
+Finally, the mapcanvas is our main map area. Its the drawable
+widget that our map will be dispalyed on.
 
 Now we can move on to initialising our application....
 
@@ -71,15 +67,15 @@ int main(int argc, char ** argv)
 
 \end{verbatim}
 
-So now we have a qgsapplication and we have defined some variables. Since I
-tested this on the Ubuntu 8.10, I just specified the location of the vector
-provider plugins as being inside the my development install directory. It
-would probaby make more sense in general to keep the QGIS libs in one of the
+We now have a qgsapplication and we have defined several variables. Since this 
+tutorial was initially tested on Ubuntu Linux 8.10, we have specified the 
+location of the vector provider plugins as being inside our development install 
+directory. It would probaby make more sense in general to keep the QGIS libs in one of the
 standard library search paths on your system (e.g. /usr/lib) but this way
 will do for now.
 
-The next two variables defined here just point to the shapefile I am going to
-be using (and you should substitute your own data here).
+The next two variables defined here point to the shapefile that is going to
+be used (though you will likely want to substitute your own data here).
 
 The provider name is important - it tells qgis which data provider to use to
 load the file. Typically you will use 'ogr' or 'postgres'.
@@ -122,15 +118,12 @@ QgsSingleSymbolRenderer(mypLayer->geometryType());
 \end{verbatim}
 
 The code is fairly self explanatory here. We create a layer using the
-variables
-we defined earlier. Then we assign the layer a renderer. When we create a
-renderer, we need to specify the geometry type, which do do by asking the
-vector layer for its geometry type. Next we add the layer to a layerset
-(which
-is used by the QgsMapCanvas to keep track of which layers to render and in
-what
-order) and to the maplayer registry. Finally we make sure the layer will be
-visible.
+variables we defined earlier. Then we assign the layer a renderer. 
+When we create a renderer, we need to specify the geometry type, which 
+we do by asking the vector layer for its geometry type. Next we add 
+the layer to a layerset (which is used by the QgsMapCanvas to keep 
+track of which layers to render and in what order) and to the maplayer 
+registry. Finally we make sure the layer will be visible.
 
 Now we create a map canvas on to which we can draw the layer.
 
@@ -160,7 +153,7 @@ canvas, make it visible and then refresh it.
 
 \end{verbatim}
 
-In the last step we simply start the Qt event loop and we are all done. You
+In the last step we simply start the Qt event loop and we are done. You
 can check out, compile and run this example using cmake like this:
 
 \begin{verbatim}
@@ -189,17 +182,15 @@ When we compile and run it here is what the running app looks like:
 
 \subsection{Working with QgsMapCanvas}
 
-In Section~\ref{subsec:simple_widget} we showed you the usage of the
-QgsMapCanvas api to create a simple application that loads a shapefile and
+In the previous Section (Section~\ref{subsec:simple_widget}) we showed you how to use 
+the QgsMapCanvas API to create a simple application that loads a shapefile and
 displays the points in it. But what good is a map that you can't interact
 with? 
 
-In this second tutorial I will extend the last tutorial by making it a
+In this second tutorial we will extend the previous tutorial by making it a
 QMainWindow application with a menu, toolbar and canvas area. We show you how
-to use QgsMapTool - the base class for all tools that need to interact with
-the map canvas.
-The purpose is to provide a demonstrator project, so I wont promise to write the most
-elegant or robust C++ code. The project will provide 4 toolbar icons for
+to use QgsMapTool - the base class for all tools that are used to interact with
+the map canvas. The project will provide 4 toolbar icons for
 
 \begin{itemize}
  \item loading a map layer (layer name is hard coded in the application
@@ -215,12 +206,12 @@ the .ui file for the main window.
 \textbf{Note:} You will need to edit the .pro file in the above svn directory to
 match your system.
 
-Since much of the code is the same as the previous tutorial, I will focus on
+Since much of the code is the same as the previous tutorial, we will focus on
 the MapTool specifics - the rest of the implementation details can be
 investigated by checking out the project form SVN. A QgsMapTool is a class that
 interacts with the MapCanvas using the mouse pointer. QGIS has a number of
 QgsMapTools implemented, and you can subclass QgsMapTool to create your own. In
-mainwindow.cpp you will see I include the headers for the QgsMapTools near the
+mainwindow.cpp you will see we have included the headers for the QgsMapTools near the
 start of the file:
 
 \begin{verbatim}
@@ -264,8 +255,7 @@ actions were created in designer.
      mpMapToolBar->addAction(mpActionPan);
 \end{verbatim}
 
-Thats really pretty straightforward Qt stuff too. Now we create our three map
-tools:
+Now we create our three map tools:
 
 \begin{verbatim}
      //create the maptools
@@ -293,7 +283,7 @@ set. For example when the pan icon is clicked, we do this:
    \begin{center}
    \caption{QMainWindow application with a menu, toolbar and canvas area
 \osxcaption}\label{fig:cpp2_application}\smallskip
-   \includegraphics[clip=true, width=\textwidth]{cpp2_application}
+   \includegraphics[clip=true, width=12cm]{cpp2_application}
 \end{center}
 \end{figure}
 

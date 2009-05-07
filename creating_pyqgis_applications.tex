@@ -11,11 +11,11 @@ libraries that can be used to create new applications. This goal has been
 realized with the refactoring of libraries that took place after the release
 of 0.8. Since the release of 0.9, development of standalone applications using
 either C++ or Python is possible. We recommend you use QGIS 1.0.0 or greater
-as the basis for your pythong applications because since this version we now
+as the basis for your python applications because since this version we now
 provide a stable consistent API.
 
-In this chapter we'll take a brief look at the process for creating a
-standalone Python application. The QGIS blog has several examples of creating
+In this chapter we'll take a brief look at the process of creating a
+standalone Python application. The QGIS blog has several examples for creating
 PyQGIS\footnote{An application created using Python and the QGIS bindings}
 applications. We'll use one of them as a starting point to get a look at how
 to create an application.
@@ -354,24 +354,17 @@ your home directory in
 
 When the application starts up, it looks like this:
 
-%\begin{figure}[ht]
-%\begin{center}
-%  \caption{Starting the new demo application}\label{fig:demo_app_startup}%\smallskip
-%  \includegraphics[scale=0.8]{getdsn}
-%\end{center}
-%\end{figure}
+\begin{figure}[ht]
+\begin{center}
+  \caption{Starting the new demo application \nixcaption} \label{fig:demo_app_startup}
+  \includegraphics[clip=true, width=12cm]{python1_application}
+\end{center}
+\end{figure}
 
 To add the \filename{world\_borders} layer, click on the 
 \usertext{Add Layer} tool and navigate to the data directory.
 Select the shapefile and click \button{Open} to add it to the map. 
-Our custom fill color is applied and the result is:
-
-%\begin{figure}[ht]
-%\begin{center}
-%  \caption{Adding a layer the demo application}\label{fig:demo_app_done}%\smallskip
-%  \includegraphics[scale=0.8]{getdsn}
-%\end{center}
-%\end{figure}
+Our custom fill color is applied and the result is shown in Figure \ref{fig:demo_app_done}.
 
 Creating a PyQGIS application is really pretty simple.  In less than 150 lines
 of code we have an application that can load a shapefile and navigate the map.
@@ -382,4 +375,11 @@ by holding down the \keystroke{Space} bar and moving the mouse.
 Some sophisticated applications have been created with PyQGIS and more are in 
 the works. This is pretty impressive, considering that this development has 
 taken place even before the official release of QGIS 1.0.
+
+\begin{figure}[ht]
+\begin{center}
+  \caption{Adding a layer the demo application \nixcaption} \label{fig:demo_app_done}
+  \includegraphics[clip=true, width=12cm]{python2_application}
+\end{center}
+\end{figure}
 

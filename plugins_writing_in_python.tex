@@ -6,35 +6,34 @@
 % comment out the following line:
 % \updatedisclaimer
 
-In this section you find a beginner's tutorial for writing a QGIS Python
-plugins. It is based on the workshop "Extending the Functionality of QGIS
+In this section we provide a beginner's tutorial for writing a simple QGIS Python
+plugin. It is based on the workshop "Extending the Functionality of QGIS
 with Python Plugins" held at FOSS4G 2008 by Dr. Marco Hugentobler, Dr. Horst
 D\"uster and Tim Sutton. 
 
 Apart from writing a QGIS Python plugin, it is also possible to use PyQGIS
-from a python command line console which is mainly interesting for debugging
-or to write standalone applications in Python with their own user interfaces
-using the functionality of the QGIS core library.
+from a python command line console which is useful for debugging or writing 
+standalone applications in Python, with their own user interfaces
+based on the functionality of the QGIS core library.
 
 \subsection{Why Python and what about licensing}
 
-Python is a scripting language which was designed with the goal of being easy
-to program. It has a mechanism that automatically releases memory that is no
+Python is a scripting language that was designed with the goal of being easy
+to program. It has a mechanism for automatically releasing memory that is no
 longer used (garbagge collector). A further advantage is that many programs
 that are written in C++ or Java offer the possibility to write extensions in
 Python, e.g. OpenOffice or Gimp. Therefore it is a good investment of time to
 learn the Python language.
 
-PyQGIS plugins use functionality of libqgis\_core.so and libqgis\_gui.so. As
-both are licensed under GNU GPL, QGIS Python plugins must be licenced under the
-GPL, too. This means you may use your plugins for any purpose and you are not
-forced to publish them. If you do publish them however, they must be
-published under the conditions of the GPL license. 
+PyQGIS plugins take advantage of the functionality of libqgis\_core.so and libqgis\_gui.so. 
+As both libqgis\_core.so and libqgis\_gui.so are licensed under GNU GPL, QGIS Python 
+plugins must also be licenced under the GPL. This means you may use your plugins 
+for any purpose, and you are not forced to publish them. If you do publish them however, 
+they must be published under the conditions of the GPL license. 
 
 \subsection{What needs to be installed to get started}
 
-If you program Python plugins at home, you will need the following libraries
-and programs:
+You will need the following libraries and programs to create QGIS python plugins yourself:
 
 \begin{itemize}
 \item QGIS
@@ -45,13 +44,12 @@ and programs:
 \end{itemize}
 
 If you use Linux, there are binary packages for all major distributions. For
-Windows, the PyQt installer already contains Qt, PyQt and the PyQt
-development tools.
+Windows, the PyQt installer contains Qt, PyQt and the PyQt development tools.
 
 \subsection{Programming a simple PyQGIS Plugin in four steps}\label{subsec:pyfoursteps}
 
-The example plugin is intentionally kept simple. It adds a button to the menu
-bar of QGIS. If the button is clicked, a file dialog appears where the user
+The example plugin demonstrated here is intentionally kept simple. It adds a button to the menu
+bar of QGIS. When the button is clicked, a file dialog appears where the user
 may load a shape file.
 
 For each python plugin, a dedicated folder that contains the plugin files
@@ -77,7 +75,7 @@ C:\textbackslash Documents and Settings\textbackslash\$USERNAME\textbackslash .q
 
 \end{itemize}
 
-Once that's done, the plugin will show up in the
+Once that is done, the plugin will show up in the
 \dropmenuopttwo{mActionShowPluginManager}{Plugin Manager...}
 
 To provide the neccessary information for QGIS, the plugin needs to implement
@@ -89,7 +87,7 @@ an instance of the plugin. The argument of type QGisInterface is used by the
 plugin to access functions of the QGIS instance. We are going to work with
 this object in step 2.  
 
-Note that, in contrast to other programing languages, indention is very
+Note that in contrast to other programing languages, indention is very
 important. The Python interpreter throws an error if it is not correct.
 
 For our plugin we create the plugin folder 'foss4g\_plugin' in
@@ -143,7 +141,7 @@ def classFactory(iface):
   return FOSS4GPlugin(iface)
 \end{verbatim}
 
-At this point the plugin already the neccessary infrastructure to appear in
+At this point the plugin already has the neccessary infrastructure to appear in
 the QGIS \dropmenuopttwo{mActionShowPluginManager}{Plugin Manager...} to be
 loaded or unloaded. 
 
@@ -151,16 +149,16 @@ loaded or unloaded.
 
 To make the icon graphic available for our program, we need a so-called
 resource file. In the resource file, the graphic is contained in hexadecimal
-notation. Fortunately, we don't need to care about its representation because
+notation. Fortunately, we don't need to worry about its representation because
 we use the pyrcc compiler, a tool that reads the file
 \filename{resources.qrc} and creates a resource file. 
 
 The file \filename{foss4g.png} and the \filename{resources.qrc} we use in
-this little workshop can be downloaded from
-\url{http://karlinapp.ethz.ch/python\_foss4g}. Move these 2 files into the
-directory of the example plugin
-\filename{\$HOME/.qgis/python/plugins/foss4g\_plugin} and enter there: pyrcc4 -o
-resources.py resources.qrc.
+this workshop can be downloaded from \url{http://karlinapp.ethz.ch/python\_foss4g}, you 
+can also use your own icon if you prefer, you just need to make sure it is named 
+\filename{foss4g.png}. Move these 2 files into the directory of the example plugin 
+\filename{\$HOME/.qgis/python/plugins/foss4g\_plugin} and enter: \filename{pyrcc4 -o
+resources.py resources.qrc}.
 
 \minisec{Step 3: Add a button and a menu}
 
@@ -212,34 +210,36 @@ access shapefiles:
 \end{verbatim}
 
 
-\subsection{Committing the plugin to repository}
+\subsection{Uploading the plugin to the repository}
 
 If you have written a plugin you consider to be useful and you want to share with
-other users you're welcome to upload it to the QGIS User-Contributed Repository.
+other users you are welcome to upload it to the QGIS User-Contributed Repository.
 \begin{itemize}
-\item Prepare a plugin directory containing only necessary files (ensure that there
+\item Prepare a plugin directory containing only the necessary files (ensure that there
 is no compiled .pyc files, Subversion .svn directories etc).
 \item Make a zip archive of it, including the directory. Be sure the zip file
-name is exactly the same as the directory inside (except the .zip extension of course).
-In other case the Plugin Installer won't be able to relate the available plugin with its
+name is exactly the same as the directory inside (except the .zip extension of course), if not 
+the Plugin Installer will be unable to relate the available plugin with its 
 locally installed instance.
 \item Upload it to the repository: \url{http://pyqgis.org/admin/contributed} (you
 will need to register at first time). Please pay attention when filling the form.
-Especially the Version Number field is often filled wrongly what confuses the Plugin
-Installer and causes false notifications of available updates.
+The Version Number field is especially important, and if filled out incorrectly it may confuse the Plugin Installer and cause false notifications of available updates.
 \end{itemize}
 
 \subsection{Further information}
 
-As you can see, you need information from different sources to write PyQGIS
-plugins. Plugin writers need to know Python and the QGIS plugin interface as
-well as the Qt4 classes and tools. At the beginning it is best to learn from
+As you can see, you need information from many different sources to a write PyQGIS
+plugin. Plugin authors need to know Python, the QGIS plugin interface, as well 
+as the Qt4 classes and tools. In the beginning, it is best to learn from
 examples and copy the mechanism of existing plugins. Using the QGIS plugin
-installer, which itself is a Python plugin, it is possible to download a lot
-of existing Python plugins and to study their behaviour.
+installer, which itself is a Python plugin, it is possible to download many 
+existing Python plugins and to study their behaviour. It is also possible to use 
+the on-line Python plugin generator to create a base plugin to work off of. This on-line 
+tool will help you to build a minimal plugin that you can use as a starting point in your 
+development. The result is a ready to install QGIS 1.0 plugin that implements an 
+empty dialog with Ok and Close buttons. It is available here: \url{http://www.pyqgis.org/builder/plugin_builder.py}
 
-There is a a collection of online documentation that may be usefull for
-PyQGIS programers:
+There is a a collection of on-line documentation that may be useful for PyQGIS programmers:
  
 \begin{itemize}
 \item QGIS wiki: \url{http://wiki.qgis.org/qgiswiki/PythonBindings}

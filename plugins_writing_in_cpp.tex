@@ -10,13 +10,13 @@ In this section we provide a beginner's tutorial for writing a simple QGIS
 C++ plugin. It is based on a workshop held by Dr. Marco Hugentobler. 
 
 QGIS C++ plugins are dynamically linked libraries (.so or .dll). They are
-linked to QGIS at runtime when requested in the plugin manager and extend the
-functionality of QGIS. They have access to the QGIS GUI and can be devided
+linked to QGIS at runtime when requested in the Plugin Manager, and extend the
+functionality of QGIS via access to the QGIS GUI. In general, they can be devided
 into core and external plugins.
 
-Technically the QGIS plugin manager looks in the lib/qgis directory for all
+Technically the QGIS Plugin Manager looks in the lib/qgis directory for all
 .so files and loads them when it is started. When it is closed they are
-unloaded again, except the ones with a checked box. For newly loaded plugins,
+unloaded again, except the ones enabled by the user (See User Manual). For newly loaded plugins,
 the \method{classFactory} method creates an instance of the plugin class and
 the \method{initGui} method of the plugin is called to show the GUI elements
 in the plugin menu and toolbar. The \method{unload()} function of the plugin
@@ -31,9 +31,9 @@ QGIS itself is written in C++, so it makes sense to write plugins in C++
 as well. It is an object-oriented programming (OOP) language that is prefered 
 by many developers for creating large-scale applications.
 
-QGIS C++ plugins use the functionalities of libqgis*.so libraries. As they are
-licensed under the GNU GPL, QGIS C++ plugins must also be licenced under the GPL.
-This means that you may use your plugins for any purpose and you are not required to
+QGIS C++ plugins take advantage of the functionalities provided by the libqgis*.so libraries. 
+As these libraries licensed under the GNU GPL, QGIS C++ plugins must also be licenced under 
+the GPL. This means that you may use your plugins for any purpose and you are not required to
 publish them. If you do publish them however, they must be published under
 the conditions of the GPL license. 
 
@@ -41,18 +41,18 @@ the conditions of the GPL license.
 
 The C++ plugin example covered in this manual is a point converter plugin and intentionally kept simple. 
 The plugin searches the active vector layer in QGIS, converts all vertices of 
-the layer's features to point features keeping the attributes, and finally
+the layer's features to point features (keeping the attributes), and finally
 writes the point features to a delimited text file. The new layer can then
 be loaded into QGIS using the delimited text plugin (see User Manual).
 
 \minisec{Step 1: Make the plugin manager recognise the plugin}
 
 As a first step we create the \filename{QgsPointConverter.h} and
-\filename{QgsPointConverter.cpp} files. Then we add virtual methods inherited
-from QgisPlugin (but leave them empty for now), create necessary external 'C'
-methods and a .pro file, which is a Qt mechanism to easily create Makefiles.
-Then we compile the sources, move the compiled library into the plugin folder
-and load it in the QGIS plugin manager.
+\filename{QgsPointConverter.cpp} files. We then add virtual methods inherited
+from QgisPlugin (but leave them empty for now), create the necessary external 'C'
+methods, and a .pro file (which is a Qt mechanism to easily create Makefiles).
+Then we compile the sources, move the compiled library into the plugin folder,
+and load it in the QGIS Plugin Manager.
 
 \textbf{a) Create new pointconverter.pro file and add}:
 
@@ -520,10 +520,10 @@ attributeString, QTextStream& stream) const
 
 \minisec{Step 4: Copy the feature attributes to the text file}
 
-At the end we extract the attributes from the active layer using
-QgsVectorDataProvider::fieldNameMap(). For each feature we extract the field
-values using QgsFeature::attributeMap() and add the contents comma separated
-behind the x- and y-coordinates for each new point feature. For this step
+At the end we extract the attributes from the active layer using 
+QgsVectorDataProvider::fieldNameMap(). For each feature we extract the field 
+values using QgsFeature::attributeMap() and add the contents (comma separated) 
+behind the x- and y-coordinates for each new point feature. For this step 
 there is no need for any furter change in \filename{qgspointconverterplugin.h} 
 
 \textbf{h) Open qgspointconverterplugin.cpp again and extend existing content
@@ -828,9 +828,9 @@ QGISEXTERN void unload(QgisPlugin* theQgsPointConverterPluginPointer)
 
 \subsection{Further information}
 
-As you can see, you need information from different sources to write QGIS C++
-plugins. Plugin writers need to know C++, the QGIS plugin interface as
-well as Qt4 classes and tools. At the beginning it is best to learn from
+As you can see, you need information from many different sources to write QGIS C++ 
+plugins. Plugin writers need to know C++, the QGIS plugin interface as 
+well as Qt4 classes and tools. At the beginning it is best to learn from 
 examples and copy the mechanism of existing plugins. 
 
 There is a a collection of online documentation that may be usefull for

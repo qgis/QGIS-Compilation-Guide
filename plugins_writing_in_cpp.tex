@@ -27,25 +27,23 @@ have a few external 'C' functions for description and of course the
 
 \subsection{Why C++ and what about licensing}
 
-QGIS itself is written in C++, so it also makes sense to write plugins in C++
-as well. It is an object-oriented programming (OOP) language that is viewed
-by many developers as a prefered language for creating large-scale
-applications.
+QGIS itself is written in C++, so it makes sense to write plugins in C++
+as well. It is an object-oriented programming (OOP) language that is prefered 
+by many developers for creating large-scale applications.
 
-QGIS C++ plugins use functionalities of libqgis*.so libraries. As they are
-licensed under GNU GPL, QGIS C++ plugins must be licenced under the GPL, too.
-This means you may use your plugins for any purpose and you are not forced to
+QGIS C++ plugins use the functionalities of libqgis*.so libraries. As they are
+licensed under the GNU GPL, QGIS C++ plugins must also be licenced under the GPL.
+This means that you may use your plugins for any purpose and you are not required to
 publish them. If you do publish them however, they must be published under
 the conditions of the GPL license. 
 
 \subsection{Programming a QGIS C++ Plugin in four steps}
 
-The example plugin is a point converter plugin and intentionally kept simple. 
-The plugin searches the active vector layer in QGIS, converts all vertices of
-the layer features to point features keeping the attributes and finally
-writes the point features into a delimited text file. The new layer can then
-be loaded into QGIS using the delimited text plugin (see Section
-\ref{label_dltext}).
+The C++ plugin example covered in this manual is a point converter plugin and intentionally kept simple. 
+The plugin searches the active vector layer in QGIS, converts all vertices of 
+the layer's features to point features keeping the attributes, and finally
+writes the point features to a delimited text file. The new layer can then
+be loaded into QGIS using the delimited text plugin (see User Manual).
 
 \minisec{Step 1: Make the plugin manager recognise the plugin}
 
@@ -174,7 +172,7 @@ QGISEXTERN void unload(QgisPlugin* theQgsPointConverterPluginPointer)
 
 This step includes adding a pointer to the QgisInterface object in the plugin
 class. Then we create a QAction and a callback function (slot), add it to the
-QGIS GUI using QgisIface::addToolBarIcon() and QgisIface::addPluginToMenu()
+QGIS GUI using QgisInterface::addToolBarIcon() and QgisInterface::addPluginToMenu()
 and finally remove the QAction in the \method{unload()} method.
 
 \textbf{d) Open qgspointconverterplugin.h again and extend existing content to}:

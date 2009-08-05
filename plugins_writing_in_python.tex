@@ -209,6 +209,15 @@ access shapefiles:
       vlayer = self.iface.addVectorLayer(fileName, "myLayer", "ogr")
 \end{verbatim}
 
+\minisec{Signal 'activated ()' in python plugins is deprecated}
+
+When writing your python plugin, remember that the \texttt{activated ()}
+signal of the 'QAction class', used to signal the plugin it has been
+activated, is deprecated. This signal has disappeared from Qt4 and if Qt4 is
+not compiled with the Qt3 backward compatibility, it is simply non existent,
+so no plugin can be called at all.
+
+Please replace \texttt{activated ()} with \texttt{triggered ()}.
 
 \subsection{Uploading the plugin to the repository}
 

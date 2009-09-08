@@ -15,9 +15,8 @@ PNG=cpp1_application.eps\
     mActionShowPluginManager.eps\
     python1_application.eps\
     python2_application.eps\
+    qgislogo.eps\
 
-JPG=qgis_icon_new_verylarge.eps\
-	 
 	
 ##### TARGETS #####
 

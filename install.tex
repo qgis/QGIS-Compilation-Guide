@@ -353,7 +353,7 @@ Then extract it and build it to a prefix of /usr/local.  Double-click the source
 tarball to unpack it, then cd to the source folder and:
 
 \begin{verbatim}
-./configure
+/configure
 make
 sudo make install
 \end{verbatim}
@@ -368,7 +368,7 @@ http://sourceforge.net/project/showfiles.php?group_id=10127
 Double-click the source tarball to unpack, then cd to the source folder and:
 
 \begin{verbatim}
-./configure
+/configure
 make 
 sudo make install 
 \end{verbatim}
@@ -458,7 +458,7 @@ Now build and install it to a prefix of /usr/local.Ê Double-click the source
 tarball to unpack it, then cd to the source folder and:
 
 \begin{verbatim}
-./configure --prefix=/usr/local 
+/configure --prefix=/usr/local 
 make
 sudo make install 
 \end{verbatim}
@@ -476,7 +476,7 @@ strange application).Ê Download the source.Ê Double-click the source tarball,
 then cd to the source folder and:
 
 \begin{verbatim}
-./bootstrap --docdir=/share/doc/CMake --mandir=/share/man
+/bootstrap --docdir=/share/doc/CMake --mandir=/share/man
 make
 sudo make install
 \end{verbatim}
@@ -737,7 +737,7 @@ libsqlite3-dev sqlite3 ccache make libpq-dev flex bison cmake txt2tags \
 python-qt4 python-qt4-dev python-sip4 sip4 python-sip4-dev
 \end{verbatim}
 
-/!$\backslash$ Debian users should use libgdal-dev above rather
+/!$\backslash$ Debian users may have to use libgdal-dev above rather.
 
 /!$\backslash$ \textbf{*Note:*} For python language bindings SIP $>$= 4.5 and PyQt4 $>$= 4.1 is required! Some stable GNU/Linux
 distributions (e.g. Debian or SuSE) only provide SIP $<$ 4.5 and PyQt4 $<$ 4.1. To include support for python 
@@ -819,7 +819,7 @@ Error validating server certificate for 'https://svn.qgis.org:443':
 \end{verbatim}
 
 \subsection{Starting the compile}
-/!$\backslash$ \textbf{*Note:*} The next section describes howto build debian packages
+/!$\backslash$ \textbf{*Note:*} Skip to next section for a description of howto build debian packages
 
 I compile my development version of QGIS into my \~{}/apps directory to avoid
 conflicts with Ubuntu packages that may be under /usr. This way for example
@@ -883,7 +883,11 @@ you can install them using \texttt{apt-get} and re-run the command.
 using \texttt{dpkg -r libqgis1-dev}.  Otherwise \texttt{dpkg-buildpackage} will complain about a
 build conflict.
 
-The the packages are created in the parent directory (ie. one level up).
+/!$\backslash$ \textbf{*Note:*} There is a debian package build for GRASS support which needs 
+GRASS >= 6.4 (\texttt{grass} and \texttt{grass-dev}). Debian packages are available in 
+lenny-backports and squeeze.
+
+The packages are created in the parent directory (ie. one level up).
 Install them using dpkg.  E.g.:
 
 \begin{verbatim}
@@ -936,7 +940,7 @@ cd /libecwj2-3.3
 Compile the code with the standard commands
 
 \begin{verbatim}
-./configure
+/configure
 make
 sudo make install
 \end{verbatim}
@@ -978,20 +982,20 @@ cd /gdal
 and run configure with a few specific parameters
 
 \begin{verbatim}
-./configure --without-grass --with-mrsid=../Geo_DSDK-7.0.0.2167 --without-jp2mrsid
+/configure --without-grass --with-mrsid=../Geo_DSDK-7.0.0.2167 --without-jp2mrsid
 \end{verbatim}
 
 at the end of the configuration process you should read something like
 
 \begin{verbatim}
-...
+..
 GRASS support:             no
-...
-...
-...
+..
+..
+..
 ECW support:               yes
 MrSID support              yes			
-...
+..
 \end{verbatim}
 
 then compile normally
@@ -1051,7 +1055,7 @@ For example the GRASS 6.4rc4 is available at \htmladdnormallink{http://grass.itc
 Uncompress the arquive, enter the newly created folder and run configure with a few specific parameters
 
 \begin{verbatim}
-./configure --with-tcltk-includes=/usr/include/tcl8.4 \
+/configure --with-tcltk-includes=/usr/include/tcl8.4 \
 --with-proj-share=/usr/share/proj --with-gdal=/usr/local/bin/gdal-config \
 --with-python=/usr/bin/python2.5-config
 \end{verbatim}
@@ -1108,7 +1112,7 @@ cd /gdal-grass-1.4.3
 run configure
 
 \begin{verbatim}
-./configure --with-grass=/usr/local/grass-6.4.0RC4
+/configure --with-grass=/usr/local/grass-6.4.0RC4
 \end{verbatim}
 
 then as usual
@@ -1298,17 +1302,17 @@ make
 make install
 rm /usr/local/lib/libgdal.a
 g++ -s -shared -o ./libgdal.dll -L/usr/local/lib -lz -lpng ./frmts/o/*.o \
-./gcore/*.o ./port/*.o ./alg/*.o ./ogr/ogrsf_frmts/o/*.o ./ogr/ogrgeometryfactory.o \
-./ogr/ogrpoint.o ./ogr/ogrcurve.o ./ogr/ogrlinestring.o ./ogr/ogrlinearring.o \
-./ogr/ogrpolygon.o ./ogr/ogrutils.o ./ogr/ogrgeometry.o ./ogr/ogrgeometrycollection.o \
-./ogr/ogrmultipolygon.o ./ogr/ogrsurface.o ./ogr/ogrmultipoint.o \
-./ogr/ogrmultilinestring.o ./ogr/ogr_api.o ./ogr/ogrfeature.o ./ogr/ogrfeaturedefn.o \
-./ogr/ogrfeaturequery.o ./ogr/ogrfeaturestyle.o ./ogr/ogrfielddefn.o \
-./ogr/ogrspatialreference.o ./ogr/ogr_srsnode.o ./ogr/ogr_srs_proj4.o \
-./ogr/ogr_fromepsg.o ./ogr/ogrct.o ./ogr/ogr_opt.o ./ogr/ogr_srs_esri.o \
-./ogr/ogr_srs_pci.o ./ogr/ogr_srs_usgs.o ./ogr/ogr_srs_dict.o ./ogr/ogr_srs_panorama.o \
-./ogr/swq.o ./ogr/ogr_srs_validate.o ./ogr/ogr_srs_xml.o ./ogr/ograssemblepolygon.o \
-./ogr/ogr2gmlgeometry.o ./ogr/gml2ogrgeometry.o
+/gcore/*.o ./port/*.o ./alg/*.o ./ogr/ogrsf_frmts/o/*.o ./ogr/ogrgeometryfactory.o \
+/ogr/ogrpoint.o ./ogr/ogrcurve.o ./ogr/ogrlinestring.o ./ogr/ogrlinearring.o \
+/ogr/ogrpolygon.o ./ogr/ogrutils.o ./ogr/ogrgeometry.o ./ogr/ogrgeometrycollection.o \
+/ogr/ogrmultipolygon.o ./ogr/ogrsurface.o ./ogr/ogrmultipoint.o \
+/ogr/ogrmultilinestring.o ./ogr/ogr_api.o ./ogr/ogrfeature.o ./ogr/ogrfeaturedefn.o \
+/ogr/ogrfeaturequery.o ./ogr/ogrfeaturestyle.o ./ogr/ogrfielddefn.o \
+/ogr/ogrspatialreference.o ./ogr/ogr_srsnode.o ./ogr/ogr_srs_proj4.o \
+/ogr/ogr_fromepsg.o ./ogr/ogrct.o ./ogr/ogr_opt.o ./ogr/ogr_srs_esri.o \
+/ogr/ogr_srs_pci.o ./ogr/ogr_srs_usgs.o ./ogr/ogr_srs_dict.o ./ogr/ogr_srs_panorama.o \
+/ogr/swq.o ./ogr/ogr_srs_validate.o ./ogr/ogr_srs_xml.o ./ogr/ograssemblepolygon.o \
+/ogr/ogr2gmlgeometry.o ./ogr/gml2ogrgeometry.o
 install libgdal.dll /usr/local/lib
 cd ogr
 g++ -s ogrinfo.o -o ogrinfo.exe -L/usr/local/lib -lpng -lz -lgdal
@@ -1335,7 +1339,7 @@ CONFIG_LIBS="-L/usr/local/lib -lpng -lz -lgdal"
 \end{verbatim}
 GDAL build procedure can be greatly simplified to use libtool with a libtool line patch:
 configure gdal as below:
-./configure --with-ngpython --with-xerces=/local/ --with-jasper=/local/ --with-grass=/local/grass-6.3.cvs/ --with-pg=/local/pgsql/bin/pg\_config.exe 
+/configure --with-ngpython --with-xerces=/local/ --with-jasper=/local/ --with-grass=/local/grass-6.3.cvs/ --with-pg=/local/pgsql/bin/pg\_config.exe 
 
 Then fix libtool with:
 mv libtool libtool.orig
@@ -1359,7 +1363,7 @@ Run these commands:
 
 \begin{verbatim}
 export PATH="/usr/local/bin:/usr/local/lib:$PATH"
-./configure --prefix=/usr/local --bindir=/usr/local \
+/configure --prefix=/usr/local --bindir=/usr/local \
 --with-includes=/usr/local/include --with-libs=/usr/local/lib --with-cxx \
 --without-jpeg --without-tiff --with-postgres=yes \
 --with-postgres-includes=/local/pgsql/include --with-pgsql-libs=/local/pgsql/lib \
@@ -1431,7 +1435,7 @@ to:
 Now, in MSYS console, go to the source directory and run:
 
 \begin{verbatim}
-./configure --prefix=/usr/local
+/configure --prefix=/usr/local
 make
 make install
 \end{verbatim}
@@ -1467,7 +1471,7 @@ Unpack to \texttt{c:$\backslash$msys$\backslash$local$\backslash$src}
 Run from MSYS console in the source directory:
 
 \begin{verbatim}
-./configure
+/configure
 make
 make install
 \end{verbatim}
@@ -1484,7 +1488,7 @@ Unpack to \texttt{c:$\backslash$msys$\backslash$local$\backslash$src}
 Run from MSYS console in the source directory:
 
 \begin{verbatim}
-./configure
+/configure
 make
 make install
 \end{verbatim}

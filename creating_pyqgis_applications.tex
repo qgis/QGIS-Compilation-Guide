@@ -133,21 +133,29 @@ all the logic of our application.
 44 
 45     # Create the actions for our tools and connect each to the appropriate
 46     # method
-47     self.actionAddLayer = QAction(QIcon("(qgis_prefix + "/share/qgis/themes/classic/mActionAddLayer.png"),
-48     \
+47     self.actionAddLayer = QAction(QIcon("(qgis_prefix + \
+       "/share/qgis/themes/classic/mActionAddLayer.png"),
+48
 49         "Add Layer", self.frame)
 50     self.connect(self.actionAddLayer, SIGNAL("activated()"), self.addLayer)
-51     self.actionZoomIn = QAction(QIcon("(qgis_prefix + "/share/qgis/themes/classic/mActionZoomIn.png"), \
-52         "Zoom In", self.frame)
+51     self.actionZoomIn = QAction(QIcon("(qgis_prefix + \
+       "/share/qgis/themes/classic/mActionZoomIn.png"), \
+       "Zoom In", self.frame)
+52     
 53     self.connect(self.actionZoomIn, SIGNAL("activated()"), self.zoomIn)
-54     self.actionZoomOut = QAction(QIcon("(qgis_prefix + "/share/qgis/themes/classic/mActionZoomOut.png"), \
+54     self.actionZoomOut = QAction(QIcon("(qgis_prefix + \
+       "/share/qgis/themes/classic/mActionZoomOut.png"), \
 55         "Zoom Out", self.frame)
 56     self.connect(self.actionZoomOut, SIGNAL("activated()"), self.zoomOut)
-57     self.actionPan = QAction(QIcon("(qgis_prefix + "/share/qgis/themes/classic/mActionPan.png"), \
-58         "Pan", self.frame)
+57     self.actionPan = QAction(QIcon("(qgis_prefix + \
+       "/share/qgis/themes/classic/mActionPan.png"), \
+       "Pan", self.frame)
+58
 59     self.connect(self.actionPan, SIGNAL("activated()"), self.pan)
-60     self.actionZoomFull = QAction(QIcon("(qgis_prefix + "/share/qgis/themes/classic/mActionZoomFullExtent.png"), \
-61         "Zoom Full Extent", self.frame)
+60     self.actionZoomFull = QAction(QIcon("(qgis_prefix + \
+       "/share/qgis/themes/classic/mActionZoomFullExtent.png"), \
+       "Zoom Full Extent", self.frame)
+61
 62     self.connect(self.actionZoomFull, SIGNAL("activated()"),
 63     self.zoomFull)
 64 

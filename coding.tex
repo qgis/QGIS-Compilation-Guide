@@ -8,7 +8,7 @@
 
 The following chapters provide coding information for QGIS Version \CURRENT.
 This document corresponds almost to a \LaTeX~ conversion of the CODING.t2t
-file coming with the QGIS sources from August, 24th 2009.
+file coming with the QGIS sources from November, 27th 2009.
 
 These standards should be followed by all QGIS developers.
 
@@ -65,16 +65,12 @@ Examples:
   QgsUserOptionsBase
 \end{verbatim}
 \subsubsection{Dialogs}
-
 All dialogs should implement the following:
-
-\begin{itemize}
-\item Tooltip help for all toolbar icons and other relevant widgets
-\item WhatsThis help for \textbf{all} widgets on the dialog
-\item An optional (though highly recommended) context sensitive \textit{Help}
-button that directs the user to the appropriate help page by launching their web 
-browser
-\end{itemize}
+ * Tooltip help for all toolbar icons and other relevant widgets
+ * WhatsThis help for \textbf{all} widgets on the dialog
+ * An optional (though highly recommended) context sensitive \textit{Help} button
+   that directs the user to the appropriate help page by launching their web
+   browser
 
 \subsection{C++ Files}
 \subsubsection{Names}
@@ -88,7 +84,7 @@ Example:
     qgsfeatureattribute.cpp and qgsfeatureattribute.h
 \end{verbatim}
 
-\textbf{Note:} in case it is not clear from the statement above, for a filename 
+/!$\backslash$ \textbf{Note:} in case it is not clear from the statement above, for a filename 
 to match a class name it implicitly means that each class should be declared 
 and implemented in its own file. This makes it much easier for newcomers to 
 identify where the code is relating to specific class.
@@ -309,14 +305,16 @@ So, prefer this:
 
 \subsubsection{Book recommendations}
 \begin{itemize}
-\item \htmladdnormallink{Effective C++}{http://www.awprofessional.com/title/0321334876}, Scott Meyers
-\item \htmladdnormallink{More Effective C++}{http://www.awprofessional.com/bookstore/product.asp?isbn=020163371X&rl=1}, Scott Meyers
-\item \htmladdnormallink{Effective STL}{http://www.awprofessional.com/title/0201749629}, Scott Meyers
-\item \htmladdnormallink{Design Patterns}{http://www.awprofessional.com/title/0201634988}, GoF
+\item \url{http://www.awprofessional.com/title/0321334876}, Scott Meyers
+\item \url{http://www.awprofessional.com/bookstore/product.asp?isbn=020163371X&rl=1}, Scott Meyers
+\item \url{http://www.awprofessional.com/title/0201749629}, Scott Meyers
+\item \url{http://www.awprofessional.com/title/0201634988}, GoF
 \end{itemize}
 
+
 You should also really read this article from Qt Quarterly on 
-\htmladdnormallink{http://doc.trolltech.com/qq/qq13-apis.html designing Qt style}{APIs}
+\url{http://doc.trolltech.com/qq/qq13-apis.html}
+
 
 \section{SVN Access}
 This page describes how to get started using the QGIS Subversion repository
@@ -350,10 +348,10 @@ To check out SVN stable trunk:
   svn co https://svn.osgeo.org/qgis/trunk/qgis qgis_trunk
 \end{verbatim}
 
-\textbf{Note:} If you are behind a proxy server, edit your \~{}/subversion/servers
+/!$\backslash$ \textbf{Note:} If you are behind a proxy server, edit your \~{}/subversion/servers
 file to specify your proxy settings first!
 
-\textbf{Note:} In QGIS we keep our most stable code in the version 1\_0 branch.
+/!$\backslash$ \textbf{Note:} In QGIS we keep our most stable code in the version 1\_0 branch.
 Trunk contains code for the so called 'unstable' release series. Periodically
 we will tag a release off trunk, and then continue stabilisation and selective
 incorporation of new features into trunk.
@@ -371,8 +369,8 @@ If you're interested in checking out Quantum GIS documentation sources:
 You can also take a look at DocumentationWritersCorner for more information.
 
 \subsection{SVN Documentation}
+The repository is organized as follows:
 
-The repository is organized as shown in:
 \url{http://wiki.qgis.org/images/repo.png}
 
 See the Subversion book \url{http://svnbook.red-bean.com} for information on becoming
@@ -398,19 +396,15 @@ another developer is already working on the same feature. Also contact the
 technical advisor of the project steering committee (PSC). If the new feature
 requires any changes to the QGIS architecture, a request for comment (RFC) is
 needed. 
-
 \item \textbf{Create a branch:} 
 Create a new svn branch for the development of the new feature (see
 UsingSubversion for the svn syntax). Now you can start developing.
-
 \item \textbf{Merge from trunk regularly:}
 It is recommended to merge the changes in trunk to the branch on a regular
 basis. This makes it easier to merge the branch back to trunk later.
-
 \item \textbf{Documentation on wiki:} 
 It is also recommended to document the intended changes and the current status
 of the work on a wiki page.
-
 \item \textbf{Testing before merging back to trunk:} 
 When you are finished with the new feature and happy with the stability, make
 an announcement on the developer list.  Before merging back, the changes will
@@ -418,7 +412,6 @@ be tested by developers and users. Binary packages (especially for OsX and
 Windows) will be generated to also involve non-developers. In trac, a new
 Component will be opened to file tickets against.  Once there are no remaining
 issues left, the technical advisor of the PSC merges the changes into trunk.
-
 \end{itemize}
 
 
@@ -435,7 +428,7 @@ svn commit -m "New feature branch"
 \subsubsection{Merge regularly from trunk to branch}
 When working in a branch you should regularly merge trunk into it so that your
 branch does not diverge more than necessary. In the top level dir of your
-branch, first type \texttt{svn info} to determine the revision numbers of your
+branch, first type \texttt{`svn info`} to determine the revision numbers of your
 branch which will produce output something like this:
 
 \begin{verbatim}
@@ -447,7 +440,7 @@ UUID do repositorio: c8812cc2-4d05-0410-92ff-de0c093fc19c
 Revisao: 6546
 Tipo de No: diretorio
 Agendado: normal
-Autor da Ultima Mudança: timlinux
+Autor da Ultima Mudanca: timlinux
 Revisao da Ultima Mudanca: 6495
 Data da Ultima Mudanca: 2007-02-02 09:29:47 -0200 (Sex, 02 Fev 2007)
 Propriedades da Ultima Mudanca: 2007-01-09 11:32:55 -0200 (Ter, 09 Jan 2007)
@@ -475,7 +468,7 @@ easily, and help us deal with the patches that are sent to use easily.
 
 \subsubsection{Patch file naming}
 If the patch is a fix for a specific bug, please name the file with the bug
-number in it e.g. \textbf{bug777fix.diff}, and attach it to the original bug report
+number in it e.g.  \textbf{bug777fix.diff}, and attach it to the original bug report
 in trac (\url{https://trac.osgeo.org/qgis/}).
 
 If the bug is an enhancement or new feature, its usually a good idea to create
@@ -867,10 +860,9 @@ void TestQgsRasterLayer::cleanupTestCase()
 
 The above init function illustrates a couple of interesting things.
 
-\begin{enumerate}
-\item I needed to manually set the QGIS application data path so that
+ 1. I needed to manually set the QGIS application data path so that
    resources such as srs.db can be found properly.
-\item Secondly, this is a data driven test so we needed to provide a 
+ 2. Secondly, this is a data driven test so we needed to provide a 
    way to generically locate the 'tenbytenraster.asc file. This was 
    achieved by using the compiler define \textbf{TEST\_DATA\_PATH}. The 
    define is created in the CMakeLists.txt configuration file under 
@@ -879,7 +871,6 @@ The above init function illustrates a couple of interesting things.
    under $<$QGIS Source Root$>$/tests/testdata. You should only commit 
    very small datasets here. If your test needs to modify the test 
    data, it should make a copy of if first.
-\end{enumerate}
 
 Qt also provides some other interesting mechanisms for data driven 
 testing, so if you are interested to know more on the topic, consult 
@@ -950,28 +941,47 @@ line is the include for the MOC generated sources. You should replace
 \subsection{Adding your unit test to CMakeLists.txt}
 Adding your unit test to the build system is simply a matter of editing the
 CMakeLists.txt in the test directory, cloning one of the existing test blocks,
-and then search and replacing your test class name into it.  For example:
+and then replacing your test class name into it.  For example:
 
 \begin{verbatim}
-#
 # QgsRasterLayer test
-#
-SET(qgis_rasterlayertest_SRCS testqgsrasterlayer.cpp)
-SET(qgis_rasterlayertest_MOC_CPPS testqgsrasterlayer.cpp)
-QT4_WRAP_CPP(qgis_rasterlayertest_MOC_SRCS ${qgis_rasterlayertest_MOC_CPPS})
-ADD_CUSTOM_TARGET(qgis_rasterlayertestmoc ALL DEPENDS ${qgis_rasterlayertest_MOC_SRCS})
-ADD_EXECUTABLE(qgis_rasterlayertest ${qgis_rasterlayertest_SRCS})
-ADD_DEPENDENCIES(qgis_rasterlayertest qgis_rasterlayertestmoc)
-TARGET_LINK_LIBRARIES(qgis_rasterlayertest ${QT_LIBRARIES} qgis_core)
-INSTALL(TARGETS qgis_rasterlayertest RUNTIME DESTINATION ${QGIS_BIN_DIR})
-ADD_TEST(qgis_rasterlayertest ${QGIS_BIN_DIR}/qgis_rasterlayertest)
+ADD_QGIS_TEST(rasterlayertest testqgsrasterlayer.cpp)
 \end{verbatim}
 
+\subsection{The ADD\_QGIS\_TEST macro explained}
 I'll run through these lines briefly to explain what they do, but if you are
-not interested, just clone the block, search and replace e.g.
+not interested, just do the step explained in the above section and section.
 
 \begin{verbatim}
-:'<,'>s/rasterlayer/mynewtest/g
+MACRO (ADD_QGIS_TEST testname testsrc)
+  SET(qgis_${testname}_SRCS ${testsrc} ${util_SRCS})
+  SET(qgis_${testname}_MOC_CPPS ${testsrc})
+  QT4_WRAP_CPP(qgis_${testname}_MOC_SRCS ${qgis_${testname}_MOC_CPPS})
+  ADD_CUSTOM_TARGET(qgis_${testname}moc ALL DEPENDS ${qgis_${testname}_MOC_SRCS})
+  ADD_EXECUTABLE(qgis_${testname} ${qgis_${testname}_SRCS})
+  ADD_DEPENDENCIES(qgis_${testname} qgis_${testname}moc)
+  TARGET_LINK_LIBRARIES(qgis_${testname} ${QT_LIBRARIES} qgis_core)
+  SET_TARGET_PROPERTIES(qgis_${testname}
+    PROPERTIES
+    # skip the full RPATH for the build tree
+    SKIP_BUILD_RPATH  TRUE
+    # when building, use the install RPATH already
+    # (so it doesn't need to relink when installing)
+    BUILD_WITH_INSTALL_RPATH TRUE
+    # the RPATH to be used when installing
+    INSTALL_RPATH ${QGIS_LIB_DIR}
+    # add the automatically determined parts of the RPATH
+    # which point to directories outside the build tree to the install RPATH
+    INSTALL_RPATH_USE_LINK_PATH true)
+  IF (APPLE)
+    # For Mac OS X, the executable must be at the root of the bundle's executable folder
+    INSTALL(TARGETS qgis_${testname} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
+    ADD_TEST(qgis_${testname} ${CMAKE_INSTALL_PREFIX}/qgis_${testname})
+  ELSE (APPLE)
+    INSTALL(TARGETS qgis_${testname} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+    ADD_TEST(qgis_${testname} ${CMAKE_INSTALL_PREFIX}/bin/qgis_${testname})
+  ENDIF (APPLE)
+ENDMACRO (ADD_QGIS_TEST)
 \end{verbatim}
 
 Lets look a little more in detail at the individual lines. First we define the
@@ -980,16 +990,16 @@ methodology I described above where class declaration and definition are in the
 same file) its a simple statement:
 
 \begin{verbatim}
-SET(qgis_rasterlayertest_SRCS testqgsrasterlayer.cpp)
+SET(qgis_${testname}_SRCS ${testsrc} ${util_SRCS})
 \end{verbatim}
 
 Since our test class needs to be run through the Qt meta object compiler (moc)
 we need to provide a couple of lines to make that happen too:
 
 \begin{verbatim}
-SET(qgis_rasterlayertest_MOC_CPPS testqgsrasterlayer.cpp)
-QT4_WRAP_CPP(qgis_rasterlayertest_MOC_SRCS ${qgis_rasterlayertest_MOC_CPPS})
-ADD_CUSTOM_TARGET(qgis_rasterlayertestmoc ALL DEPENDS ${qgis_rasterlayertest_MOC_SRCS})
+SET(qgis_${testname}_MOC_CPPS ${testsrc})
+QT4_WRAP_CPP(qgis_${testname}_MOC_SRCS ${qgis_${testname}_MOC_CPPS})
+ADD_CUSTOM_TARGET(qgis_${testname}moc ALL DEPENDS ${qgis_${testname}_MOC_SRCS})
 \end{verbatim}
 
 Next we tell cmake that it must make an executeable from the test class.
@@ -999,8 +1009,8 @@ included the moc outputs directly into our test class, so that will give it
 executeable:
 
 \begin{verbatim}
-ADD_EXECUTABLE(qgis_rasterlayertest ${qgis_rasterlayertest_SRCS})
-ADD_DEPENDENCIES(qgis_rasterlayertest qgis_rasterlayertestmoc)
+ADD_EXECUTABLE(qgis_${testname} ${qgis_${testname}_SRCS})
+ADD_DEPENDENCIES(qgis_${testname} qgis_${testname}moc)
 \end{verbatim}
 
 Next we need to specify any library dependencies. At the moment classes have
@@ -1010,45 +1020,54 @@ only. Of course you also need to link to the relevant qgis libraries as
 required by your unit test.
 
 \begin{verbatim}
-TARGET_LINK_LIBRARIES(qgis_rasterlayertest ${QT_LIBRARIES} qgis_core)
+TARGET_LINK_LIBRARIES(qgis_${testname} ${QT_LIBRARIES} qgis_core)
 \end{verbatim}
 
-Next I tell cmake to the same place as the qgis binaries itself. This is
-something I plan to remove in the future so that the tests can run directly
-from inside the source tree.
+Next I tell cmake to install the tests to the same place as the qgis binaries
+itself. This is something I plan to remove in the future so that the tests can
+run directly from inside the source tree.
 
 \begin{verbatim}
-INSTALL(TARGETS qgis_rasterlayertest RUNTIME DESTINATION ${QGIS_BIN_DIR})
+SET_TARGET_PROPERTIES(qgis_${testname}
+  PROPERTIES
+  # skip the full RPATH for the build tree
+  SKIP_BUILD_RPATH  TRUE
+  # when building, use the install RPATH already
+  # (so it doesn't need to relink when installing)
+  BUILD_WITH_INSTALL_RPATH TRUE
+  # the RPATH to be used when installing
+  INSTALL_RPATH ${QGIS_LIB_DIR}
+  # add the automatically determined parts of the RPATH
+  # which point to directories outside the build tree to the install RPATH
+  INSTALL_RPATH_USE_LINK_PATH true)
+IF (APPLE)
+  # For Mac OS X, the executable must be at the root of the bundle's executable folder
+  INSTALL(TARGETS qgis_${testname} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
+  ADD_TEST(qgis_${testname} ${CMAKE_INSTALL_PREFIX}/qgis_${testname})
+ELSE (APPLE)
+  INSTALL(TARGETS qgis_${testname} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+  ADD_TEST(qgis_${testname} ${CMAKE_INSTALL_PREFIX}/bin/qgis_${testname})
+ENDIF (APPLE)
 \end{verbatim}
 
-Finally here is where the best magic happens - we register the class with
-ctest. If you recall in the overview I gave in the beginning of this section we
-are using both QtTest and CTest together. To recap, \textbf{QtTest} adds a main
-method to your test unit and handles calling your test methods within the
-class. It also provides some macros like QVERIFY that you can use as to test
-for failure of the tests using conditions. The output from a QtTest unit test
-is an executeable which you can run from the command line.  However when you
-have a suite of tests and you want to run each executeable in turn, and
-better yet integrate running tests into the build process, the \textbf{CTest} is
-what we use. The next line registers the unit test with CMake / CTest.
-
-\begin{verbatim}
-ADD_TEST(qgis_rasterlayertest ${QGIS_BIN_DIR}/qgis_rasterlayertest)
-\end{verbatim}
-
-The last thing I should add is that if your test requires optional parts of the
-build process (e.g. Postgresql support, GSL libs, GRASS etc.), you should take
-care to enclose you test block inside a IF () block in the CMakeLists.txt file.
+Finally the above uses ADD\_TEST to register the test with cmake / ctest . Here
+is where the best magic happens - we register the class with ctest. If you
+recall in the overview I gave in the beginning of this section we are using
+both QtTest and CTest together. To recap, \textbf{QtTest} adds a main method to your
+test unit and handles calling your test methods within the class. It also
+provides some macros like QVERIFY that you can use as to test for failure of
+the tests using conditions. The output from a QtTest unit test is an
+executeable which you can run from the command line.  However when you have a
+suite of tests and you want to run each executeable in turn, and better yet
+integrate running tests into the build process, the \textbf{CTest} is what we use. 
 
 \subsection{Building your unit test}
 To build the unit test you need only to make sure that ENABLE\_TESTS=true in the
 cmake configuration. There are two ways to do this:
 
-\begin{enumerate}
-\item Run ccmake .. (cmakesetup .. under windows) and interactively set 
+ 1. Run ccmake .. (cmakesetup .. under windows) and interactively set 
  the ENABLE\_TESTS flag to ON.
-\item Add a command line flag to cmake e.g. cmake -DENABLE\_TESTS=true ..
-\end{enumerate}
+ 1. Add a command line flag to cmake e.g. cmake -DENABLE\_TESTS=true ..
 
 Other than that, just build QGIS as per normal and the tests should build too.
 
@@ -1106,8 +1125,8 @@ PASS   : TestQgsApplication::getPaths()
   User DB PATH: /Users/tim/.qgis/qgis.db
   QDEBUG : TestQgsApplication::checkTheme() Checking if a theme icon exists:
   QDEBUG : TestQgsApplication::checkTheme() 
-  /Users/tim/dev/cpp/qgis/build/tests/src/core/..//share/qgis/themes/\
-  default//mIconProjectionDisabled.png
+  /Users/tim/dev/cpp/qgis/build/tests/src/core/\
+  ..//share/qgis/themes/default//mIconProjectionDisabled.png
   FAIL!  : TestQgsApplication::checkTheme() '!myPixmap.isNull()' returned FALSE. ()
   Loc: [/Users/tim/dev/cpp/qgis/tests/src/core/testqgsapplication.cpp(59)]
 PASS   : TestQgsApplication::cleanupTestCase()
@@ -1131,7 +1150,6 @@ CMakeLists.txt parts) are still being worked on so that the testing framework
 works in a truly platform way. I will update this document as things
 progress.
 
-
 \section{HIG (Human Interface Guidelines)}
 In order for all graphical user interface elements to appear consistant and to
 all the user to instinctively use dialogs, it is important that the following
@@ -1148,7 +1166,7 @@ guidelines are followed in layout and design of GUIs.
  \item Do not end labels for widgets or group boxes with a colon:
    Adding a colon causes visual noise and does not impart additional meaning,
    so dont use them. An exception to this rule is when you have two labels next
-   to each other e.g.: Label1 \htmladdnormallink{Plugin}{Path:} Label2 [/path/to/plugins]
+   to each other e.g.: Label1 \url{Plugin}{Path:} Label2 [/path/to/plugins]
  \item Keep harmful actions away from harmless ones:
    If you have actions for 'delete', 'remove' etc, try to impose adequate space
    between the harmful action and innocuous actions so that the users is less
@@ -1158,4 +1176,3 @@ guidelines are followed in layout and design of GUIs.
    buttons is consistent with the operating system / locale / desktop
    environment that the user is using.
  \end{enumerate}
-

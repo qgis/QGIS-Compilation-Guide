@@ -21,8 +21,8 @@ all:
 	make pics
 	latex $(FILE)
 	#bibtex $(FILE)
-	bibtex $(FILE)1
-	bibtex $(FILE)2
+	#bibtex $(FILE)1
+	#bibtex $(FILE)2
 	#now loop over Latex files, until stable:
 	echo Rerun > $(FILE).log
 	while grep Rerun $(FILE).log >/dev/null 2>&1 ; do latex $(FILE).tex ; done
@@ -30,7 +30,7 @@ all:
 
 text:
 	latex $(FILE)
-	bibtex $(FILE)
+	#bibtex $(FILE)
 	#now loop over Latex files, until stable:
 	echo Rerun > $(FILE).log
 	while grep Rerun $(FILE).log >/dev/null 2>&1 ; do latex $(FILE).tex ; done

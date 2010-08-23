@@ -126,19 +126,19 @@ code of this class:
 
 \begin{verbatim}
 # -*- coding: utf-8 -*-
-from foss4gplugin import FOSS4GPlugin
 def name():
-  return "FOSS4G example"
+    return "FOSS4G example"
 def description():
-  return "A simple example plugin to load shapefiles"
+    return "A simple example plugin to load shapefiles"
 def version():
-  return "0.1"
+    return "0.1"
 def qgisMinimumVersion():
-  return "1.0"
+    return "1.0"
 def authorName():
-  return "John Developer"
+    return "John Developer"
 def classFactory(iface):
-  return FOSS4GPlugin(iface)
+    from foss4gplugin import FOSS4GPlugin
+    return FOSS4GPlugin(iface)
 \end{verbatim}
 
 At this point the plugin already has the neccessary infrastructure to appear in

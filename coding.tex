@@ -69,17 +69,21 @@ QGIS classes that are generated from Qt Designer (ui) files should have a
 
 \begin{verbatim}
 Examples:
-  QgsPluginMangerBase
+  QgsPluginManagerBase
   QgsUserOptionsBase
 \end{verbatim}
 \hypertarget{toc9}{}
 \subsubsection{Dialogs}
+
 All dialogs should implement the following:
- * Tooltip help for all toolbar icons and other relevant widgets
- * WhatsThis help for \textbf{all} widgets on the dialog
- * An optional (though highly recommended) context sensitive \textit{Help} button
+
+\begin{itemize}
+\item Tooltip help for all toolbar icons and other relevant widgets
+\item WhatsThis help for \textbf{all} widgets on the dialog
+\item An optional (though highly recommended) context sensitive \textit{Help} button
    that directs the user to the appropriate help page by launching their web
    browser
+\end{itemize}
 
 \hypertarget{toc10}{}
 \subsection{C++ Files}
@@ -209,6 +213,13 @@ Braces should start on the line following the expression:
   }
 \end{verbatim}
 
+There is a scripts/prepare-commit.sh that looks up the changed files and
+reindents them using astyle.  This should be run before committing.
+
+As newer versions of astyle indent differently than the version used to do a
+complete reindentation of the source, the script uses an old astyle version,
+that we include in our repository.
+
 \hypertarget{toc21}{}
 \subsection{API Compatibility}
 From QGIS 1.0 we will provide a stable, backwards compatible API. This will
@@ -248,10 +259,13 @@ once, consider consolidating the code into a single function.
 \end{verbatim}
 
 This will:
-  * allow changes to be made in one location instead of in multiple places
-  * help prevent code bloat
-  * make it more difficult for multiple copies to evolve differences over time,
+
+\begin{itemize}
+\item allow changes to be made in one location instead of in multiple places
+\item help prevent code bloat
+\item make it more difficult for multiple copies to evolve differences over time,
     thus making it harder to understand and maintain for others
+\end{itemize}
 
 \hypertarget{toc24}{}
 \subsubsection{Prefer Having Constants First in Predicates}
@@ -531,7 +545,7 @@ a ticket in trac (\htmladdnormallink{https://trac.osgeo.org/qgis/}{https://trac.
 This makes it easier for us to apply the patches since we don't need to
 navigate to a specific place in the source tree to apply the patch. Also when I
 receive patches I usually evaluate them using kompare, and having the patch
-from the top level dir makes this much easier. Below is an example of you you
+from the top level dir makes this much easier. Below is an example of how you
 can include multiple changed files into your patch from the top level
 directory:
 
@@ -556,10 +570,10 @@ svn diff > bug7887fix.diff
 \subsubsection{Getting your patch noticed}
 QGIS developers are busy folk. We do scan the incoming patches on bug reports
 but sometimes we miss things.  Don't be offended or alarmed. Try to identify a
-developer to help you - using the ["Project Organigram"] and contact them
+developer to help you - using the Project Organigram at \url{http://www.qgis.org/wiki/Project_Organigram} and contact them
 asking them if they can look at your patch. If you don't get any response, you
 can escalate your query to one of the Project Steering Committee members
-(contact details also available on the ["Project Organigram"]).
+(contact details also available on the 'Project Organigram').
 
 \hypertarget{toc44}{}
 \subsubsection{Due Diligence}
@@ -572,13 +586,13 @@ under the GPL.
 \subsection{Obtaining SVN Write Access}
 Write access to QGIS source tree is by invitation. Typically when a person
 submits several (there is no fixed number here) substantial patches that
-demonstrate basic competance and understanding of C++ and QGIS coding
+demonstrate basic competence and understanding of C++ and QGIS coding
 conventions, one of the PSC members or other existing developers can nominate
 that person to the PSC for granting of write access. The nominator should give
 a basic promotional paragraph of why they think that person should gain write
 access. In some cases we will grant write access to non C++ developers e.g. for
 translators and documentors.  In these cases, the person should still have
-demonstrated ability to submit patches and should ideally have submtted several
+demonstrated ability to submit patches and should ideally have submitted several
 substantial patches that demonstrate their understanding of modifying the code
 base without breaking things, etc.
 
@@ -631,7 +645,7 @@ Commit your changes
 svn commit src/pluguns/grass/modules/foo.xml
 \end{verbatim}
 
-Your editor (as defined in EDITOR environment variable) will appear and you
+Your editor (as defined in \$EDITOR environment variable) will appear and you
 should make a comment at the top of the file (above the area that says 'don't
 change this'. Put a descriptive comment and rather do several small commits if
 the changes across a number of files are unrelated. Conversely we prefer you to
@@ -898,10 +912,14 @@ void TestQgsRasterLayer::initTestCase()
 #endif
   //create some objects that will be used in all tests...
 
-  std::cout << "Prefix  PATH: " << QgsApplication::prefixPath().toLocal8Bit().data() << std::endl;
-  std::cout << "Plugin  PATH: " << QgsApplication::pluginPath().toLocal8Bit().data() << std::endl;
-  std::cout << "PkgData PATH: " << QgsApplication::pkgDataPath().toLocal8Bit().data() << std::endl;
-  std::cout << "User DB PATH: " << QgsApplication::qgisUserDbFilePath().toLocal8Bit().data() << std::endl;
+  std::cout << "Prefix  PATH: " << \
+  QgsApplication::prefixPath().toLocal8Bit().data() << std::endl;
+  std::cout << "Plugin  PATH: " << \
+  QgsApplication::pluginPath().toLocal8Bit().data() << std::endl;
+  std::cout << "PkgData PATH: " << \
+  QgsApplication::pkgDataPath().toLocal8Bit().data() << std::endl;
+  std::cout << "User DB PATH: " << \
+  QgsApplication::qgisUserDbFilePath().toLocal8Bit().data() << std::endl;
 
   //create a raster layer that will be used in all tests...
   QString myFileName (TEST_DATA_DIR); //defined in CmakeLists.txt
@@ -1240,6 +1258,27 @@ guidelines are followed in layout and design of GUIs.
    Using a button box will ensure that the order of 'OK' and 'Cancel' etc,
    buttons is consistent with the operating system / locale / desktop
    environment that the user is using.
+ \item Tabs should not be nested. If you use tabs, follow the style of the
+   tabs used in QgsVectorLayerProperties / QgsProjectProperties etc.
+   i.e. tabs at top with icons at 22x22.
+ \item Widget stacks should be avoided if at all possible. They cause problems with 
+   layouts and inexplicable (to the user) resizing of dialogs to accommodate 
+   widgets that are not visible.
+ \item Try to avoid technical terms and rather use a laymans equivalent e.g. use
+   the word 'Transparency' rather than 'Alpha Channel' (contrived example),
+   'Text' instead of 'String' and so on.
+ \item Use consistent iconography. If you need an icon or icon elements, please
+   contact Robert Szczepanek on the mailing list for assistance.
+ \item Place long lists of widgets into scroll boxes. No dialog should exceed 580
+   pixels in height and 1000 pixels in width.
+ \item Separate advanced options from basic ones. Novice users should be able to
+   quickly access the items needed for basic activities without needing to
+   concern themselves with complexity of advanced features. Advanced features
+   should either be located below a dividing line, or placed onto a separate tab.
+ \item Don't add options for the sake of having lots of options. Strive to keep the
+   user interface minimalistic and use sensible defaults.
+ \item If clicking a button will spawn a new dialog, an ellipsis (...) should be
+   suffixed to the button text.
  \end{enumerate}
 
 
